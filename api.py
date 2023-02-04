@@ -25,6 +25,9 @@ def todo_serializer(todo):
         
     }
 
+@app.route("/", methods=['GET'])
+def one():
+    return "Welcome to the database, you bitch!"
 
 @app.route("/api", methods=['GET'])
 def index():
@@ -46,6 +49,13 @@ def create():
 def show(id):
     return jsonify([*map(todo_serializer, Todo.query.filter_by(id=id))])
 
+@app.route('/api/<int:id>',methods=['POST'])
+def delete(id):
+    request_data = json.loads(request.data)
+    Todo.query.filter_by(id=request_data['id']).delete()
+    db.session.commit()
+    
+    return {'204':'Deleted Successfully!'}
 
 if __name__ == '__main__':
     app.run(debug=True)

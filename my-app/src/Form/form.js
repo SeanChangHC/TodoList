@@ -19,8 +19,6 @@ export const Form = ({userInput, onFormChange, onFormSubmit}) => {
                 <input type='submit' value="submit"></input>
             </form>
 
-
-
         </>
     )
 }

@@ -1,11 +1,12 @@
 import React  from "react";
 import { useEffect, useState } from "react";
-
+import { Delete } from "../Components/Delete/delete";
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    useParams
+    useParams,
+    Link
 }from "react-router-dom"
 
 export const Show = () =>{
@@ -20,7 +21,10 @@ export const Show = () =>{
 
     return(
         <div>
-            {todo.length > 0 && todo.map(data => <div>{data.content}</div>)}
+            {todo.length > 0 && todo.map(data => <div key='id'>{data.content}</div>)}
+            <Delete id={id}/>
+            <hr></hr>
+            <Link to='/'>Back to Todo</Link>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import react, { useEffect, useState }  from 'react'
+import React, { useEffect, useState }  from 'react'
 
 import { Card } from '../Components/card'
 import { Form } from '../Form/form'
@@ -47,7 +47,9 @@ export const TodoPage = () => {
     }
 
     return(
+
         <>
+            <div> TODOPAGE</div>
             <Form  userInput={addTodo} onFormChange={handleFormChange} onFormSubmit ={handleFormSubmit}/>
             <Card listOfTodos={todo} />
         </>
