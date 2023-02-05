@@ -1,7 +1,7 @@
 from flask import Flask, jsonify,json
 from flask_sqlalchemy import SQLAlchemy
 from flask import request
-
+from generateText import text
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.db"
@@ -24,6 +24,10 @@ def todo_serializer(todo):
         'content':todo.content
         
     }
+
+# @app.before_first_request
+# def create_tables():
+#     db.create_all()
 
 @app.route("/", methods=['GET'])
 def one():

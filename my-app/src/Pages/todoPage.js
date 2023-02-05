@@ -11,7 +11,7 @@ export const TodoPage = () => {
     useEffect(()=>{
         fetch('/api').then(response =>{
             if(response.ok){
-                return response.json()
+                return response.clone().json()
             }
         }).then(data => setTodo(data))
     }, [])
@@ -31,19 +31,27 @@ export const TodoPage = () => {
             headers : {
                 "Content-type" : "application/json; charset = UTF-8"
             }
-        }).then(response => response.json())
-        .then(message => 
-            {console.log(message)
+        })
+        .then(response => response.clone().json())
+        .then(message => {
+            console.log(message)
             setAddTodo("")
+            getLatestTodos()
         })
     }
 
     const getLatestTodos = () =>{
-        fetch('/api').then(response => {
+        fetch('/api')
+        .then(response => {
             if(response.ok){
-                return response.json
+                return response.clone().json()
             }
-        }).then(data => setTodo(data))
+        })
+        .then(data => {
+            setTodo(data)
+            // console.log(data)
+        })
+        
     }
 
     return(

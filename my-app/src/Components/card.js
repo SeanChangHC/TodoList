@@ -4,10 +4,11 @@ import { Show } from "../Pages/show";
 export const Card =( {listOfTodos})=>{
     return (
         <>
-            {listOfTodos.map(todo => {
+            {Array.from(listOfTodos).map(todo => {
                 return(
                     <ul key={todo.id}>
                         <li>
+                
                             <Link to={`${todo.id}`}>{todo.content}</Link>
                         </li>
                     </ul>
