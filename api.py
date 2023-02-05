@@ -1,7 +1,7 @@
 from flask import Flask, jsonify,json
 from flask_sqlalchemy import SQLAlchemy
 from flask import request
-from generateText import text
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.db"
@@ -40,11 +40,14 @@ def index():
 
 @app.route("/api/create", methods=['POST'])
 def create():
+    from generateText import text
     request_data = json.loads(request.data)
-    with app.app_context():
-        todo = Todo(content=request_data['content'])
-        db.session.add(todo)
-        db.session.commit()
+    generateText_json = text(request_data['content'])
+    for i in range(len(generateText_json)):
+        with app.app_context():
+            todo = Todo(content=generateText_json[f'{i+1}'])
+            db.session.add(todo)
+            db.session.commit()
     
     return{'201' : 'todo created successfully'}
 

@@ -152,7 +152,7 @@ def text(prefix):
     os.environ["CUDA_VISIBLE_DEVICES"] = '0,1,2,3'  # 此处设置程序使用哪些显卡
     length = 100
     batch_size = 1
-    nsamples = 1
+    nsamples = 3
     temperature = 0.7
     topk = 8
     topp = 0
@@ -162,8 +162,8 @@ def text(prefix):
     
     print("IT's cuda!!!") if torch.cuda.is_available() else print("cpu NONONONONONONONONO")
     
-    tokenizer = tokenization_bert.BertTokenizer(vocab_file='/mnt/d/Sean/GPT2-Chinese-old_gpt_2_chinese_before_2021_4_22/cache/vocab_small.txt')
-    model = GPT2LMHeadModel.from_pretrained('/mnt/d/Sean/ptt_model/final_model')
+    tokenizer = tokenization_bert.BertTokenizer(vocab_file='D:\Sean\code\TodoList\\vocab_small.txt')
+    model = GPT2LMHeadModel.from_pretrained('D:\Sean\code\TodoList\ptt_model\\final_model')
     model.to(device)
     model.eval()
 

@@ -1,2 +1,3 @@
-./todoenv
-./example.db
+
+example.db
+ptt_model/
